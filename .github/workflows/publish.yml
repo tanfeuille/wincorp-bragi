@@ -1,0 +1,53 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout wincorp-bragi
+        uses: actions/checkout@v4
+        with:
+          path: wincorp-bragi
+
+      - name: Checkout wincorp-urd (sibling pour check-sync)
+        uses: actions/checkout@v4
+        with:
+          repository: tanfeuille/wincorp-urd
+          path: wincorp-urd
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tanfeuille'
+
+      - name: Install dependencies
+        working-directory: wincorp-bragi
+        run: npm ci
+
+      - name: Check sync with urd
+        working-directory: wincorp-bragi
+        run: npm run check-sync
+
+      - name: Build
+        working-directory: wincorp-bragi
+        run: npm run build
+
+      - name: Test
+        working-directory: wincorp-bragi
+        run: npm test
+
+      - name: Publish
+        working-directory: wincorp-bragi
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

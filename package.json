@@ -1,0 +1,54 @@
+{
+  "name": "@tanfeuille/bragi",
+  "version": "0.1.0",
+  "description": "Bragi — lookup helper TypeScript read-only pour la config LLM Yggdrasil (miroir TS de wincorp-odin). Config pure, zero-dep runtime. Consommé par wincorp-hermod et potentiellement directement par thor/bifrost.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": [
+    "./dist/models.generated.js"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "sync-models": "node scripts/sync-models.mjs",
+    "check-sync": "node scripts/check-sync.mjs",
+    "prepublishOnly": "npm run check-sync && npm run build && npm test"
+  },
+  "keywords": [
+    "wincorp",
+    "yggdrasil",
+    "bragi",
+    "llm",
+    "anthropic",
+    "claude",
+    "config",
+    "models"
+  ],
+  "author": "Tan Phi HUYNH <tanfeuille@gmail.com>",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanfeuille/wincorp-bragi.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/js-yaml": "4.0.9",
+    "@types/node": "^22.0.0",
+    "js-yaml": "4.1.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
