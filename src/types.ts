@@ -97,8 +97,13 @@ export interface BragiBuildMetadata {
  * inter-package (hermod émet ce type via onUsage callback).
  * Bragi ne l'émet jamais lui-même (pas de wrap SDK — OUT §2), mais expose le
  * type pour que les consumers puissent le déclarer dans leurs signatures.
+ *
+ * `call_id` est optionnel côté bragi (un consumer qui construit manuellement
+ * peut l'omettre). Hermod le fournit toujours via randomUUID pour corréler
+ * avec FailedAttemptEvent.
  */
 export interface UsageEvent {
+  readonly call_id?: string;
   readonly canonical_name: CanonicalModelName;
   readonly canonical_id: CanonicalModelId;
   readonly input_tokens: number;
