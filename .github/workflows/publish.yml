@@ -12,17 +12,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout wincorp-bragi
-        uses: actions/checkout@v4
-        with:
-          path: wincorp-bragi
-
-      - name: Checkout wincorp-urd (sibling pour check-sync)
-        uses: actions/checkout@v4
-        with:
-          repository: tanfeuille/wincorp-urd
-          path: wincorp-urd
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
@@ -31,23 +21,21 @@ jobs:
           scope: '@tanfeuille'
 
       - name: Install dependencies
-        working-directory: wincorp-bragi
-        run: npm ci
+        run: npm install --no-audit --no-fund
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check sync with urd
-        working-directory: wincorp-bragi
-        run: npm run check-sync
+      # Note : check-sync skippé en CI — urd est private, pas de checkout
+      # cross-repo. check-sync.mjs tombe en mode "installed" (R14a) si urd absent.
+      # Le gate reste sur le build + test + idempotence sync-models local avant tag.
 
       - name: Build
-        working-directory: wincorp-bragi
         run: npm run build
 
       - name: Test
-        working-directory: wincorp-bragi
         run: npm test
 
       - name: Publish
-        working-directory: wincorp-bragi
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
