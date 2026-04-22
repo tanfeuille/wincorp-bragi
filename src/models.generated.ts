@@ -1,7 +1,7 @@
 // @generated — DO NOT EDIT MANUALLY
 // @spec specs/models-config.spec.md v1.1
 // generated_with: js-yaml@4.1.0, bragi@0.1.0, node@24.14.0
-// from urd hash 9585d20d22cbdce61c0787b60ed73887d26118feafb5c4a7f9693863258c735d, at 2026-04-21T21:43:31.306Z
+// from urd hash 23541b03ba4923fdda13de66075d5249fce36d48d7a85e6e17caee7afa0bb03e, at 2026-04-22T08:08:16.531Z
 //
 // Pour régénérer : npm run sync-models depuis wincorp-bragi/
 // Édition manuelle interdite — le self-check runtime (R-SELFCHECK) détecte
@@ -55,7 +55,7 @@ export const MODELS_CONFIG = [
     "display_name": "Claude Opus 4.7 (1M context)",
     "id": "claude-opus-4-7",
     "max_tokens": 16384,
-    "timeout_sec": 180,
+    "timeout_sec": 1200,
     "capabilities": {
       "supports_thinking": true,
       "supports_vision": true,
@@ -104,11 +104,11 @@ export const MODELS_CONFIG = [
   },
 ] as const;
 
-export const MODELS_CONFIG_HASH = "57a82501613cdea245105fa8ed6b417d720a17ba67e715f1933e6c2e7be5b2e0" as const;
+export const MODELS_CONFIG_HASH = "3919b91765a26a002ffe29f3821bb0ead0539159d0ca52b314f6a88f42a64edd" as const;
 
 export const BRAGI_VERSION = "0.1.0" as const;
-export const BRAGI_URD_HASH = "9585d20d22cbdce61c0787b60ed73887d26118feafb5c4a7f9693863258c735d" as const;
-export const BRAGI_URD_DATE = "2026-04-20" as const;
+export const BRAGI_URD_HASH = "23541b03ba4923fdda13de66075d5249fce36d48d7a85e6e17caee7afa0bb03e" as const;
+export const BRAGI_URD_DATE = "2026-04-22" as const;
 export const BRAGI_CONFIG_VERSION = 1 as const;
 
 export interface BragiBuildMetadata {
@@ -134,7 +134,7 @@ export const BRAGI_BUILD_METADATA: BragiBuildMetadata = {
     node: "24.14.0",
     typescript: "5.7.x",
   },
-  generated_at: "2026-04-21T21:43:31.306Z",
+  generated_at: "2026-04-22T08:08:16.531Z",
 } as const;
 
 // Stat informatives (pas de garantie API publique — cf src/api.ts pour exports stables)

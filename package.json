@@ -1,6 +1,6 @@
 {
   "name": "@tanfeuille/bragi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bragi — lookup helper TypeScript read-only pour la config LLM Yggdrasil (miroir TS de wincorp-odin). Config pure, zero-dep runtime. Consommé par wincorp-hermod et potentiellement directement par thor/bifrost.",
   "type": "module",
   "main": "dist/index.js",
